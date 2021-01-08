@@ -2,13 +2,13 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
 
-const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
   entry: {
-    main: './src/index.js',
+    main: ['webpack-hot-middleware/client', './src/index.js'],
   },
   mode: 'development',
   devtool: 'inline-source-map',
@@ -22,6 +22,9 @@ module.exports = merge(common, {
           loader: require.resolve('babel-loader'),
           options: {
             presets: ['@babel/preset-env','@babel/preset-react'],
+            plugins: [
+              require.resolve('react-refresh/babel'),
+            ].filter(Boolean),
           },
         },
       },
@@ -29,10 +32,10 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshPlugin({
+    new ReactRefreshWebpackPlugin({
         overlay: {
           sockIntegration: 'whm',
-        },
+        }
     }),
     new HtmlWebpackPlugin({
       // name this file main, so that it does not get automatically requested as a static file

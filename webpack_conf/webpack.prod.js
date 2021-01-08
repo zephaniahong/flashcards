@@ -4,6 +4,9 @@ const path = require('path');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+   entry: {
+    main: ['./src/index.js'],
+  },
   mode: 'production',
   plugins: [
     new HtmlWebpackPlugin({
@@ -29,5 +32,4 @@ module.exports = merge(common, {
       },
     ],
   },
-
 });
