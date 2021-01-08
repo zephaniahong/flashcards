@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
 
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -27,6 +28,12 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshPlugin({
+        overlay: {
+          sockIntegration: 'whm',
+        },
+    }),
     new HtmlWebpackPlugin({
       // name this file main, so that it does not get automatically requested as a static file
       filename:'./main.html',
