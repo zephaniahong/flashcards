@@ -39,18 +39,18 @@
     "webpack-cli": "^4.3.1",
     "webpack-dev-middleware": "^4.0.2",
     "webpack-dev-server": "^3.11.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "@babel/preset-react": "^7.12.10",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.12.10",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
     "pg": "^8.5.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "sequelize": "^6.3.5",
-    "webpack-hot-middleware": "^2.25.0"
   }
 }
