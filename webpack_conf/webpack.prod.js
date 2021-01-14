@@ -18,7 +18,7 @@ module.exports = merge(common, {
       // favicon: resolve(__dirname, '..', 'src', 'favicon.png'),
       alwaysWriteToDisk: true,
     }),
-  ]
+  ],
   module: {
     rules: [
       {
