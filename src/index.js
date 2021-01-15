@@ -11,4 +11,4 @@ const rootElement = document.createElement('div');
 document.body.appendChild(rootElement);
 
 // have react render the JSX element into the root element.
-render( <App/>, rootElement);
+render(<App />, rootElement);
