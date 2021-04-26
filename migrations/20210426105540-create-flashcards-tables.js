@@ -1,28 +1,5 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('cards', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      question: {
-        type: Sequelize.TEXT,
-      },
-      answer: {
-        type: Sequelize.TEXT,
-      },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
-
     await queryInterface.createTable('decks', {
       id: {
         allowNull: false,
@@ -32,43 +9,6 @@ module.exports = {
       },
       name: {
         type: Sequelize.TEXT,
-      },
-      card_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'cards',
-          key: 'id',
-        },
-      },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
-
-    await queryInterface.createTable('sessions', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      deck_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'decks',
-          key: 'id',
-        },
-      },
-      mastery: {
-        type: Sequelize.INTEGER,
-      },
-      time: {
-        type: Sequelize.TIME,
       },
       created_at: {
         allowNull: false,
@@ -96,10 +36,33 @@ module.exports = {
       password: {
         type: Sequelize.TEXT,
       },
-      session_id: {
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+    });
+
+    await queryInterface.createTable('cards', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      question: {
+        type: Sequelize.TEXT,
+      },
+      answer: {
+        type: Sequelize.TEXT,
+      },
+      deck_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'sessions',
+          model: 'decks',
           key: 'id',
         },
       },
@@ -111,7 +74,43 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+    });
 
+    await queryInterface.createTable('sessions', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      deck_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'decks',
+          key: 'id',
+        },
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+      },
+      mastery: {
+        type: Sequelize.INTEGER,
+      },
+      time: {
+        type: Sequelize.TIME,
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
     });
 
     await queryInterface.createTable('session_cards', {
@@ -150,10 +149,10 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('session_cards');
+    await queryInterface.dropTable('sessions');
+    await queryInterface.dropTable('cards');
     await queryInterface.dropTable('users');
     await queryInterface.dropTable('decks');
-    await queryInterface.dropTable('sessions');
-    await queryInterface.dropTable('session_cards');
-    await queryInterface.dropTable('cards');
   },
 };
