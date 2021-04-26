@@ -18,6 +18,16 @@ export default function initSessionModel(sequelize, DataTypes) {
           key: 'id',
         },
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+      },
+      time: {
+        type: DataTypes.TIME,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,

@@ -14,6 +14,13 @@ export default function initCardModel(sequelize, DataTypes) {
       answer: {
         type: DataTypes.STRING,
       },
+      deck_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'decks',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,

@@ -11,13 +11,6 @@ export default function initDeckModel(sequelize, DataTypes) {
       name: {
         type: DataTypes.STRING,
       },
-      cardId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'cards',
-          key: 'id',
-        },
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,

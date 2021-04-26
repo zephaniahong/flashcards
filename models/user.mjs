@@ -17,20 +17,6 @@ export default function initUserModel(sequelize, DataTypes) {
       password: {
         type: DataTypes.STRING,
       },
-      sessionId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'sessions',
-          key: 'id',
-        },
-      },
-      deckId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'decks',
-          key: 'id',
-        },
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
