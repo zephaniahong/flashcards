@@ -1,0 +1,271 @@
+const { query } = require('express');
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    const decks = [
+      {
+        name: 'Physics',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'Biology',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'Biomechanics',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ];
+
+    const cards = [
+      {
+        question: 'What is specific heat capacity?',
+        answer: 'It tells you how much energy stuff can store.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'It takes 5000J to heat 50g of a substance by 40ºC. Calculate its specific heat capacity.',
+        answer: 'Energy=Mass × Specific Heat Capacity(SHC) × Temperature Change(Temp.Ch.)',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: "Explain why heating a pan of boiling water doesn't increase it temperature.",
+        answer: 'You are still putting energy into the substance but it’s used for breaking inter molecular forces rather than raising the temperature which is why you get flat spots on graphs.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'How much energy is needed to boil a pan dry of 500g of water at 100ºC. (Specific Latent Heat of water for boiling = 2 260 000 J/kg.',
+        answer: 'Energy = Mass × Specific Latent Heat (SLH) ',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Briefly describe how heat is transferred through a) conduction  b) convection  c) radiation.',
+        answer: 'Conduction of heat is the process where vibrating particles pass on extra kinetic energy to neighbour particles. Convection occurs when the more energetic particles mover from the hotter region to the cooler region –– and take their heat energy with them. Radiation– heat is radiated as infrared waves – these are electromagnetic waves that travel in straight lines at the speed of light. Radiation is different to convection and conduction in many ways one being because it can ONLY occur through transparent substances, like air, glass and water.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Describe how heat is transferred through a) under a grill  and  b) in a microwave oven',
+        answer: 'A grill heats food by infrared (heat) radiation. The heat is radiated by a grill is absorbed by the surface of particles of the food, increasing their kinetic energy. The heat energy is then either conducted or convected to more central parts. Microwave ovens use radiation to cook food too. – Microwaves are electromagnetic waves that have a different wavelength of infrared. Microwaves penetrate about 1cm into the outer layer of food where they are absorbed by water or fat molecules, increasing their kinetic energy. The energy is then conducted or convected to other parts.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Describe 4 ways of saving energy in the home and how each one works.',
+        answer: '1) Loft insulation –– fiberglass wool is laid across the loft space and reduces conduction through the ceiling and into the loft space. 2) Cavity walls and Insulation—two layers of bricks with a gap between them to reduce conduction but you still get some energy lost by convection. Squirting insulation  foam into the gap traps pockets of air to minimise this convection. (heat is still lost through the walls by radiation though. Also, if there are any spaces where air is not trapped there’ll still be some convection too). 3)Double glazing – two layers of glass with and air gap between reduce conduction. 4) Draught proofing – strips of foam and plastic around the doors and windows stop hot air from getting out – reducing convection.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'How much energy is wasted is a hairdryer is 20% efficient has a total energy input of 200 000J?',
+        answer: 'Energy = Useful energy output ÷ Total energy input',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Explain the main features of a transverse wave.',
+        answer: 'Amplitude – The displacement from the rest position to the crest. (NOT from the trough to the crest). Wavelength (λ)– The length of the full cycle from crest to crest. Frequency – The number of complete cycles or oscillations passing a certain point per second. Frequency is measured in hertz (Hz). 1 Hz is 1 wave per second.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'What is the angle of Incidence equal to?',
+        answer: 'The angle of Reflection',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'What are the main features of a plane mirror.',
+        answer: '"Incident light ray, Shiny side of mirror, Reflected light ray, Dull side of mirror"',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'List the 7 types of electromagnetic waves in order of wavelength (smallest to largest).',
+        answer: 'Radio Waves, Micro Waves, Infrared, Visible Light, Ultra Violet, X–rays, and Gamma Rays.',
+        deck_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'CELL THEORY',
+        answer: '1) All living things are made up of one or more cells and their products 2) The cell is the simplest unit of life 3) All cells come from pre–existing cells',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'There are two types of cells...',
+        answer: '1) prokaryotic 2) eukaryotic',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'PROKARYOTIC CELLS',
+        answer: '–No nucleus or other organelles –Organisms are single–celled –Very simple',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'EUKARYOTIC CELLS',
+        answer: "–More complex organization –Organelles exist and compartmentalize the cell's functions –Much larger than prokaryotic",
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'CYTOPLASM',
+        answer: 'WHAT IS IT: Jelly–like substance that fills the cell FUNCTION: Holds organelles in place, allows cell reaction to occur',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'CELL MEMBRANE',
+        answer: 'WHAT IS IT: Semi–permeable, double membrane FUNCTION: Determines what enters and leaves the cell',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'NUCLEUS',
+        answer: 'WHAT IS IT: Control center of the cell FUNCTION: Controls all cell activities and contains DNA/chromosones',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'MITOCHONDRIA',
+        answer: 'WHAT IS IT: Powerhouse, site of energy production from sugars by cellular respiration. FUNCTION: Makes oxygen available to the cell – there are more mitochondria in more active cells',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'ER – ENDOPLASMIC RETICULUM',
+        answer: 'WHAT IS IT: Network of 3D tubes and pockets that run through the cytoplasm from the nuclear membrane to the cell membrane FUNCTION: Used for transport',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'VACUOLES',
+        answer: '"FUNCTION: Many functions depending on the cell – storage of food/wastes, or water, removing waste from the cell, or maintaining fluid pressure"',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'VACUOLE # IN ANIMAL CELLS',
+        answer: 'Many small vacuoles (not visible)',
+        deck_id: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Kinesiology',
+        answer: 'the study of human movement from the point of view of physical sciences',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Traditional Kinesiology',
+        answer: 'Human movement; mechanics; anatomy',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Broader Kinesiology',
+        answer: 'Anatomy, physiology, mechanics, psychology, marketing',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Biomechanics',
+        answer: 'application of mechanical principles in the study of living organism',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'kinesiology=biomechanics',
+        answer: 'as long as the area of application is human',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Static',
+        answer: 'branch of biomechanics dealing with systems in the constant state of motion.',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Dynamics',
+        answer: 'branch of mechanics dealing with systems subject to acceleration',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Kinematics',
+        answer: 'study of description of motion',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Kinetics',
+        answer: 'study of action forces; study of explanation of motion',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Main Themes',
+        answer: 'Safety: prevention of injury Effectiveness: maximization of the output Efficiency: economy of force exertion & energy expenditure.',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        question: 'Closer to/farther from the head',
+        answer: 'superior/inferior',
+        deck_id: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ];
+    await queryInterface.bulkInsert('decks', decks);
+    await queryInterface.bulkInsert('cards', cards);
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('decks', null, {});
+    await queryInterface.bulkDelete('cards', null, {});
+  },
+};
