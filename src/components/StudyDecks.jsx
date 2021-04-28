@@ -4,6 +4,13 @@ import React, { useEffect, useState } from "react";
 const StudyDecks = () => {
   const [decks, setDecks] = useState([]);
 
+  //create new session
+  const createSession = (deckId) => {
+    axios.post(`/createSession/${deckId}`).then((response) => {
+      console.log(response);
+    });
+  };
+
   // get deck data only once OR whenever there is a change
   useEffect(() => {
     axios.get("/studyDecks").then((response) => {
@@ -15,10 +22,15 @@ const StudyDecks = () => {
   // create all the decks in card form
   const deckList = decks.map((deck) => (
     <div className="card" style={{ width: "12rem" }}>
-      <div class="card-body">
-        <h5 class="card-title">{deck.name}</h5>
-        <p class="card-text">Some quick example text</p>
-        <button class="btn btn-primary">Study</button>
+      <div className="card-body">
+        <h5 className="card-title">{deck.name}</h5>
+        <p className="card-text">Some quick example text</p>
+        <button
+          onClick={() => createSession(deck.id)}
+          className="btn btn-primary"
+        >
+          Study
+        </button>
       </div>
     </div>
   ));
