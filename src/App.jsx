@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import StudyDecks from "./components/StudyDecks.jsx";
 
 export default function App() {
   return (
     <div>
-      This is App.jsx
+      <StudyDecks />
     </div>
   );
 }
