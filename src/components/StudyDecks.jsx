@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const StudyDecks = ({ updateStudyState, studyState }) => {
+const StudyDecks = ({ updateStudyState, studyState, updateSelectedDeck }) => {
   const [decks, setDecks] = useState([]);
 
   // create new session
   const createSession = (deckId) => {
     axios.post(`/createSession/${deckId}`);
     updateStudyState("study");
+    updateSelectedDeck(deckId);
   };
 
   // get deck data only once OR whenever there is a change

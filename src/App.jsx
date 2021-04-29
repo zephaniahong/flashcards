@@ -14,9 +14,16 @@ export default function App() {
   };
 
   // function to update selected deck
+  const updateSelectedDeck = (deckId) => {
+    setSelectedDeck(deckId);
+  };
   return (
     <div>
-      <DashBoard updateStudyState={updateStudyState} studyState={studyState} />
+      <DashBoard
+        updateStudyState={updateStudyState}
+        studyState={studyState}
+        updateSelectedDeck={updateSelectedDeck}
+      />
     </div>
   );
 }
