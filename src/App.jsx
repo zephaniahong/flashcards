@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import StudyDecks from "./components/StudyDecks.jsx";
 import FlashCard from "./components/FlashCard.jsx";
+import DashBoard from "./components/DashBoard.jsx";
 export default function App() {
+  // to decide which component to render - dashboard or study
   const [studyState, setStudyState] = useState("");
 
+  // keep track of the deck id which was selected
+  const [selectedDeck, setSelectedDeck] = useState("");
+
   // function to update study state
-  const updateState = (newState) => {
+  const updateStudyState = (newState) => {
     setStudyState(newState);
   };
+
+  // function to update selected deck
   return (
     <div>
-      <StudyDecks updateState={updateState} studyState={studyState} />
+      <DashBoard updateStudyState={updateStudyState} studyState={studyState} />
     </div>
   );
 }
