@@ -16,6 +16,7 @@ export default function routes(app) {
 
   // login page
   app.get('/login', UsersController.login);
+
   // verify login details are correct
   app.post('/login', UsersController.verifyLogin);
 
@@ -24,4 +25,7 @@ export default function routes(app) {
 
   // create new session
   app.post('/createSession/:deckId', SessionsController.createSession);
+
+  // get relevant deck and cards
+  app.get('/deck/:deckId', DecksController.deck);
 }

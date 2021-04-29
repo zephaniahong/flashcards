@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const StudyDecks = ({ updateStudyState, studyState, updateSelectedDeck }) => {
+const StudyDecks = ({ updateStudyState, updateSelectedDeck }) => {
   const [decks, setDecks] = useState([]);
 
   // create new session
@@ -20,24 +20,21 @@ const StudyDecks = ({ updateStudyState, studyState, updateSelectedDeck }) => {
   }, []);
 
   // create all the decks in card form
-  let deckList;
-  if (studyState === "") {
-    deckList = decks.map((deck) => (
-      <div className="card" style={{ width: "12rem" }}>
-        <div className="card-body">
-          <h5 className="card-title">{deck.name}</h5>
-          <p className="card-text">Some quick example text</p>
-          <button
-            type="button"
-            onClick={() => createSession(deck.id)}
-            className="btn btn-primary"
-          >
-            Study
-          </button>
-        </div>
+  const deckList = decks.map((deck) => (
+    <div className="card" style={{ width: "12rem" }}>
+      <div className="card-body">
+        <h5 className="card-title">{deck.name}</h5>
+        <p className="card-text">Some quick example text</p>
+        <button
+          type="button"
+          onClick={() => createSession(deck.id)}
+          className="btn btn-primary"
+        >
+          Study
+        </button>
       </div>
-    ));
-  }
+    </div>
+  ));
 
   // check if deck data has been received
   if (decks.length > 1) {

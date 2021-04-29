@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import FlashCard from "./FlashCard.jsx";
 
-const Study = () => {
+const Study = ({ selectedDeck }) => {
   return (
     <div>
-      <FlashCard />
+      <FlashCard selectedDeck={selectedDeck} />
     </div>
   );
 };
+
+export default Study;

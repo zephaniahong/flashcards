@@ -1,3 +1,16 @@
 body {
   background-color: pink;
 }
+
+.question {
+  display: flex;
+  background-color: antiquewhite;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.familiarityButton {
+  height: 50px;
+  width: 50px;
+}
