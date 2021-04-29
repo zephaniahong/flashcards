@@ -55,8 +55,9 @@ db.Card.belongsTo(db.Deck);
 
 db.Session.hasMany(db.SessionCard);
 db.SessionCard.belongsTo(db.Session);
+
 db.Card.hasMany(db.SessionCard);
-db.SessionCard.hasMany(db.Card);
+db.SessionCard.belongsTo(db.Card);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
