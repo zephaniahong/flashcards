@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const FamiliarityButtons = ({ updateCardCounter }) => {
+const FamiliarityButtons = ({ updateCardCounter, updateCardState }) => {
   document.onkeydown = (e) => {
     if (e.code === "Digit1" || e.code === "Digit2" || e.code === "Digit3") {
       // change card being displayed
       updateCardCounter();
+      updateCardState();
 
       // register answer in db
     }

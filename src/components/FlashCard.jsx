@@ -5,10 +5,25 @@ import FamiliarityButtons from "./FamiliarityButtons.jsx";
 const FlashCard = ({ selectedDeck }) => {
   const [deck, setDeck] = useState();
   const [cardCounter, setCardCounter] = useState(0);
-
+  const [cardState, setCardState] = useState("question");
   const updateCardCounter = () => {
     setCardCounter(cardCounter + 1);
   };
+
+  // function to update card state to question
+  const updateCardState = () => {
+    setCardState("question");
+  };
+
+  // determine whether to show question or answer
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      const state = cardState === "question" ? "answer" : "question";
+      setCardState(state);
+    }
+  });
+
+  // set deck state after user chooses deck
   useEffect(() => {
     if (selectedDeck !== 0) {
       axios.get(`/deck/${selectedDeck}`).then((response) => {
@@ -17,11 +32,21 @@ const FlashCard = ({ selectedDeck }) => {
     }
   }, []);
   if (deck) {
+    let card;
+    // show question or answer
+    if (cardState === "question") {
+      card = <p>{deck[cardCounter].question}</p>;
+    } else {
+      card = <p>{deck[cardCounter].answer}</p>;
+    }
     return (
       <div>
-        <div className="question">{deck[cardCounter].question}</div>
+        <div className="card">{card}</div>
         <div className="familiarityButtonGroup row">
-          <FamiliarityButtons updateCardCounter={updateCardCounter} />
+          <FamiliarityButtons
+            updateCardCounter={updateCardCounter}
+            updateCardState={updateCardState}
+          />
         </div>
       </div>
     );
