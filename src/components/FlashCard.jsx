@@ -1,19 +1,30 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import FamiliarityButtons from "./FamiliarityButtons.jsx";
 
 const FlashCard = ({ selectedDeck }) => {
-  const [cards, setCards] = useState();
+  const [deck, setDeck] = useState();
+  const [cardCounter, setCardCounter] = useState(0);
 
+  const updateCardCounter = () => {
+    setCardCounter(cardCounter + 1);
+  };
   useEffect(() => {
     if (selectedDeck !== 0) {
       axios.get(`/deck/${selectedDeck}`).then((response) => {
-        console.log(response.data.cards);
-        setCards([response.data.cards[0]]);
+        setDeck(response.data.cards);
       });
     }
   }, []);
-  if (cards) {
-    return <div className="question">{cards[0].question}</div>;
+  if (deck) {
+    return (
+      <div>
+        <div className="question">{deck[cardCounter].question}</div>
+        <div className="familiarityButtonGroup row">
+          <FamiliarityButtons updateCardCounter={updateCardCounter} />
+        </div>
+      </div>
+    );
   }
   return null;
 };
