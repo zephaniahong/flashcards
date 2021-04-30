@@ -9,6 +9,14 @@ export default function App() {
   // keep track of the deck id which was selected
   const [selectedDeck, setSelectedDeck] = useState(0);
 
+  // note what session it is
+  const [session, setSession] = useState(0);
+
+  //function to update session
+  const updateSession = (session) => {
+    setSession(session);
+  };
+
   // function to update study state
   const updateStudyState = (newState) => {
     setStudyState(newState);
@@ -24,6 +32,7 @@ export default function App() {
         <DashBoard
           updateStudyState={updateStudyState}
           updateSelectedDeck={updateSelectedDeck}
+          updateSession={updateSession}
         />
       </div>
     );

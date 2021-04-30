@@ -1,12 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const StudyDecks = ({ updateStudyState, updateSelectedDeck }) => {
+const StudyDecks = ({
+  updateStudyState,
+  updateSelectedDeck,
+  updateSession,
+}) => {
   const [decks, setDecks] = useState([]);
 
   // create new session
   const createSession = (deckId) => {
-    axios.post(`/createSession/${deckId}`);
+    axios.post(`/createSession/${deckId}`).then((response) => {
+      updateSession(response.data.session.id);
+    });
     updateStudyState("study");
     updateSelectedDeck(deckId);
   };
