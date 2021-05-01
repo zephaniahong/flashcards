@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 
 const Stats = () => {
+  const [scoreState, setScoreState] = useState([0, 0, 0]);
+
+  const scores = scoreState.map((score, index) => {
+    if (index === 0) {
+      return <div className="score no-idea">{score}</div>;
+    } else if (index === 1) {
+      return <div className="score okay">{score}</div>;
+    } else {
+      return <div className="score perfect">{score}</div>;
+    }
+  });
+
   return (
     <React.Fragment>
       <div>Card:</div>
-      <div>
-        <div className="score no-idea">0</div>
-        <div className="score okay">0</div>
-        <div className="score perfect">0</div>
-      </div>
+      <div>{scores}</div>
     </React.Fragment>
   );
 };
