@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FamiliarityButtons from "./FamiliarityButtons.jsx";
 
-const FlashCard = ({ selectedDeck }) => {
+const FlashCard = ({ selectedDeck, session }) => {
   const [deck, setDeck] = useState();
   const [cardCounter, setCardCounter] = useState(0);
   const [cardState, setCardState] = useState("question");
@@ -18,8 +18,6 @@ const FlashCard = ({ selectedDeck }) => {
   // determine whether to show question or answer
   document.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
-      const state = cardState === "question" ? "answer" : "question";
-      setCardState(state);
     }
   });
 
@@ -31,6 +29,7 @@ const FlashCard = ({ selectedDeck }) => {
       });
     }
   }, []);
+
   if (deck) {
     let card;
     // show question or answer
@@ -41,9 +40,19 @@ const FlashCard = ({ selectedDeck }) => {
     }
     return (
       <div>
-        <div className="card">{card}</div>
+        <div
+          onClick={() => {
+            const state = cardState === "question" ? "answer" : "question";
+            setCardState(state);
+          }}
+          className="card"
+        >
+          {card}
+        </div>
         <div className="familiarityButtonGroup row">
           <FamiliarityButtons
+            cardId={deck[cardCounter].id}
+            session={session}
             updateCardCounter={updateCardCounter}
             updateCardState={updateCardState}
           />
