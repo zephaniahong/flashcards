@@ -26,13 +26,14 @@ export default function App() {
   const updateSelectedDeck = (deckId) => {
     setSelectedDeck(deckId);
   };
-  if (selectedDeck === 0) {
+  if (studyState === "") {
     return (
       <div>
         <DashBoard
           updateStudyState={updateStudyState}
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
+          selectedDeck={selectedDeck}
         />
       </div>
     );
