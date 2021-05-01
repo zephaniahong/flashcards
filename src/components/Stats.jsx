@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const Stats = () => {
-  const [scoreState, setScoreState] = useState([0, 0, 0]);
-
+const Stats = ({ scoreState }) => {
   const scores = scoreState.map((score, index) => {
     if (index === 0) {
       return <div className="score no-idea">{score}</div>;
