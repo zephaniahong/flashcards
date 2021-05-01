@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import FlashCard from "./FlashCard.jsx";
+import Stats from "./Stats.jsx";
 
-const Study = ({ selectedDeck }) => {
+const Study = ({ selectedDeck, session }) => {
   return (
-    <div>
-      <FlashCard selectedDeck={selectedDeck} />
+    <div className="row">
+      <div className="col-3">
+        <Stats />
+      </div>
+      <div className="col-9">
+        <FlashCard selectedDeck={selectedDeck} session={session} />
+      </div>
     </div>
   );
 };
