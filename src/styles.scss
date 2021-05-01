@@ -5,7 +5,7 @@ body {
 .card {
   display: flex;
   background-color: antiquewhite;
-  height: 100px;
+  height: 200px;
   justify-content: center;
   align-items: center;
 }
@@ -14,6 +14,18 @@ body {
   height: 50px;
   width: 50px;
   background-color: aqua;
+}
+
+.perfect {
+  background-color: green;
+}
+
+.okay {
+  background-color: orange;
+}
+
+.no-idea {
+  background-color: red;
 }
 
 // .familiarityButtonGroup {
