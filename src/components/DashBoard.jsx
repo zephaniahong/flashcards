@@ -6,6 +6,7 @@ const DashBoard = ({
   updateSelectedDeck,
   updateSession,
   selectedDeck,
+  setNumCards,
 }) => (
   <div>
     <StudyDecks
@@ -13,6 +14,7 @@ const DashBoard = ({
       updateSelectedDeck={updateSelectedDeck}
       updateSession={updateSession}
       selectedDeck={selectedDeck}
+      setNumCards={setNumCards}
     />
   </div>
 );

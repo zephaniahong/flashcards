@@ -17,6 +17,9 @@ export default function App() {
     setSession(session);
   };
 
+  //number of cards user wants to study
+  const [numCards, setNumCards] = useState(null);
+
   // function to update study state
   const updateStudyState = (newState) => {
     setStudyState(newState);
@@ -34,6 +37,7 @@ export default function App() {
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
           selectedDeck={selectedDeck}
+          setNumCards={setNumCards}
         />
       </div>
     );

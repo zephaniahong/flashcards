@@ -6,9 +6,9 @@ const StudyDecks = ({
   updateSelectedDeck,
   updateSession,
   selectedDeck,
+  setNumCards,
 }) => {
   const [decks, setDecks] = useState([]);
-  const [numCards, setNumCards] = useState(null);
   // create new session
   const createSession = (deckId) => {
     axios.post(`/createSession/${deckId}`).then((response) => {
