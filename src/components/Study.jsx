@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import FlashCard from "./FlashCard.jsx";
 import Stats from "./Stats.jsx";
 
-const Study = ({ selectedDeck, session }) => {
+const Study = ({
+  selectedDeck,
+  session,
+  numCards,
+  setCardCounter,
+  cardCounter,
+}) => {
   const [scoreState, setScoreState] = useState([0, 0, 0]);
 
   const updateScoreState = (index) => {
@@ -20,6 +26,9 @@ const Study = ({ selectedDeck, session }) => {
           selectedDeck={selectedDeck}
           session={session}
           updateScoreState={updateScoreState}
+          numCards={numCards}
+          setCardCounter={setCardCounter}
+          cardCounter={cardCounter}
         />
       </div>
     </div>

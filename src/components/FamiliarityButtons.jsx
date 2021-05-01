@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const FamiliarityButtons = ({
-  updateCardCounter,
   updateCardState,
   session,
   cardId,
   updateScoreState,
+  setCardCounter,
+  cardCounter,
 }) => {
   const familiarityButtons = [1, 2, 3].map((num, index) => {
     // determine color of button
@@ -23,7 +24,7 @@ const FamiliarityButtons = ({
         className={`familiarityButton col btn btn-primary ${color}`}
         onClick={() => {
           // change card being displayed
-          updateCardCounter();
+          setCardCounter(cardCounter + 1);
           // change card state to question
           updateCardState();
           // update score state in stats bar

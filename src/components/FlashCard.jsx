@@ -2,13 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FamiliarityButtons from "./FamiliarityButtons.jsx";
 
-const FlashCard = ({ selectedDeck, session, updateScoreState }) => {
+const FlashCard = ({
+  selectedDeck,
+  session,
+  updateScoreState,
+  numCards,
+  setCardCounter,
+  cardCounter,
+}) => {
   const [deck, setDeck] = useState();
-  const [cardCounter, setCardCounter] = useState(0);
   const [cardState, setCardState] = useState("question");
-  const updateCardCounter = () => {
-    setCardCounter(cardCounter + 1);
-  };
 
   // function to update card state to question
   const updateCardState = () => {
@@ -32,6 +35,7 @@ const FlashCard = ({ selectedDeck, session, updateScoreState }) => {
     } else {
       card = <p>{deck[cardCounter].answer}</p>;
     }
+    // show cards while it is less than the number of cards chosen by user
     return (
       <React.Fragment>
         <div
@@ -48,7 +52,8 @@ const FlashCard = ({ selectedDeck, session, updateScoreState }) => {
             updateScoreState={updateScoreState}
             cardId={deck[cardCounter].id}
             session={session}
-            updateCardCounter={updateCardCounter}
+            cardCounter={cardCounter}
+            setCardCounter={setCardCounter}
             updateCardState={updateCardState}
           />
         </div>
