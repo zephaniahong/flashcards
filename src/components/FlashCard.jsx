@@ -15,12 +15,6 @@ const FlashCard = ({ selectedDeck, session }) => {
     setCardState("question");
   };
 
-  // determine whether to show question or answer
-  document.addEventListener("keydown", (e) => {
-    if (e.code === "Space") {
-    }
-  });
-
   // set deck state after user chooses deck
   useEffect(() => {
     if (selectedDeck !== 0) {
@@ -39,7 +33,7 @@ const FlashCard = ({ selectedDeck, session }) => {
       card = <p>{deck[cardCounter].answer}</p>;
     }
     return (
-      <div>
+      <React.Fragment>
         <div
           onClick={() => {
             const state = cardState === "question" ? "answer" : "question";
@@ -57,7 +51,7 @@ const FlashCard = ({ selectedDeck, session }) => {
             updateCardState={updateCardState}
           />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
   return null;
