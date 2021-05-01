@@ -39,7 +39,7 @@ export default function App() {
   }
   return (
     <div>
-      <Study selectedDeck={selectedDeck} />
+      <Study selectedDeck={selectedDeck} session={session} />
     </div>
   );
 }

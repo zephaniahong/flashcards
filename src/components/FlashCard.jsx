@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FamiliarityButtons from "./FamiliarityButtons.jsx";
 
-const FlashCard = ({ selectedDeck, session }) => {
+const FlashCard = ({ selectedDeck, session, updateScoreState }) => {
   const [deck, setDeck] = useState();
   const [cardCounter, setCardCounter] = useState(0);
   const [cardState, setCardState] = useState("question");
@@ -45,6 +45,7 @@ const FlashCard = ({ selectedDeck, session }) => {
         </div>
         <div className="familiarityButtonGroup row">
           <FamiliarityButtons
+            updateScoreState={updateScoreState}
             cardId={deck[cardCounter].id}
             session={session}
             updateCardCounter={updateCardCounter}
