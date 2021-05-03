@@ -7,6 +7,7 @@ const StudyDecks = ({
   updateSession,
   selectedDeck,
   setNumCards,
+  setClickedDeck,
 }) => {
   const [decks, setDecks] = useState([]);
   // create new session
@@ -40,7 +41,13 @@ const StudyDecks = ({
 
   // create all the decks in card form
   const deckList = decks.map((deck) => (
-    <div className="card" style={{ width: "12rem" }}>
+    <div
+      onClick={() => {
+        setClickedDeck(deck.id);
+      }}
+      className="card"
+      style={{ width: "12rem" }}
+    >
       <div className="card-body">
         <h5 className="card-title">{deck.name}</h5>
         <p className="card-text">Some quick example text</p>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Study from "./components/Study.jsx";
 import DashBoard from "./components/DashBoard.jsx";
+import Summary from "./components/Summary.jsx";
 
 export default function App() {
   // to decide which component to render - dashboard or study
@@ -17,6 +18,9 @@ export default function App() {
 
   //number of cards user wants to study
   const [numCards, setNumCards] = useState(null);
+
+  // deck that user clicked on - to see stats
+  const [clickedDeck, setClickedDeck] = useState(null);
 
   //function to update session
   const updateSession = (session) => {
@@ -41,11 +45,14 @@ export default function App() {
           updateSession={updateSession}
           selectedDeck={selectedDeck}
           setNumCards={setNumCards}
+          setClickedDeck={setClickedDeck}
+          clickedDeck={clickedDeck}
         />
       </div>
     );
   } else if (studyState !== "") {
     if (cardCounter + 1 <= numCards) {
+      // display cards
       return (
         <div>
           <Study
@@ -59,6 +66,12 @@ export default function App() {
       );
     } else {
       // display summary component
+      return (
+        <div>
+          <Summary selectedDeck={selectedDeck} session={session} />
+        </div>
+      );
     }
   }
+  return null;
 }
