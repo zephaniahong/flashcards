@@ -3,7 +3,7 @@ import jsSHA from 'jssha';
 
 const { Op } = sequelizePackage;
 
-export default function initGamesController(db) {
+export default function initUsersController(db) {
   const login = async (req, res) => {
     res.render('login');
   };
@@ -22,7 +22,7 @@ export default function initGamesController(db) {
         shaObj.update(password);
         const hashedPassword = shaObj.getHash('HEX');
         if (hashedPassword === user.dataValues.password) {
-          res.cookie('playerId', user.dataValues.id);
+          res.cookie('userId', user.dataValues.id);
           res.redirect(`/dashboard/${user.dataValues.id}`);
         }
       } else {
@@ -32,7 +32,28 @@ export default function initGamesController(db) {
       console.log(err);
     }
   };
+  const userInfo = async (req, res) => {
+    const { userId } = req.cookies;
+    const user = await db.User.findByPk(userId);
+    // get all sessions the user has been in
+    const allSessions = await db.Session.findAll({
+      where: {
+        userId,
+      },
+      include: [db.SessionCard],
+    });
+    const sessionArray = allSessions.map((session) => session.id);
+
+    // count number of cards user has studied
+    const cardCount = await db.SessionCard.count({
+      where: {
+        sessionId: sessionArray,
+      },
+    });
+    res.send({ user, cardCount });
+  };
+
   return {
-    login, verifyLogin,
+    login, verifyLogin, userInfo,
   };
 }
