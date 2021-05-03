@@ -13,6 +13,25 @@ export default function initSessionCardsController(db) {
         sessionId,
       },
     );
+    res.send(200);
   };
-  return { newSessionCard };
+
+  const sessionInfo = async (req, res) => {
+    const { sessionId } = req.params;
+    console.log('****************************', sessionId);
+    try {
+      const allSessionCards = await db.SessionCard.findAll(
+        {
+          where: {
+            sessionId,
+          },
+        },
+      );
+      console.log('iammmm*******************************', allSessionCards);
+      res.send(allSessionCards);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return { newSessionCard, sessionInfo };
 }
