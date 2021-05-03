@@ -2,13 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Mastery = ({ clickedDeck }) => {
+  const [percentMastery, setPercentMastery] = useState(0);
+
   // get all sessions for a single deck
   if (clickedDeck !== null) {
     axios.get(`/allSessions/${clickedDeck}`).then((response) => {
       const mastery = response.data;
+      let count = 0;
+      // count how many 3's there are in mastery
+      for (const key in mastery) {
+        if (mastery[key] == 3) {
+          count += 1;
+        }
+      }
       // get length of deck
       axios.get(`/deckLength/${clickedDeck}`).then((response) => {
-        console.log(response.data);
+        const length = response.data.length;
+        setPercentMastery(Math.round((count / length) * 100));
       });
     });
   }
@@ -20,11 +30,19 @@ const Mastery = ({ clickedDeck }) => {
           <div className="percent">
             <svg>
               <circle cx="70" cy="70" r="70"></circle>
-              <circle cx="70" cy="70" r="70"></circle>
+              <circle
+                style={{
+                  strokeDashoffset: `calc(440 - (440 * ${percentMastery}) / 100)`,
+                }}
+                cx="70"
+                cy="70"
+                r="70"
+              ></circle>
             </svg>
             <div className="number">
               <h2>
-                90<span>%</span>
+                {percentMastery}
+                <span>%</span>
               </h2>
             </div>
           </div>

@@ -12,7 +12,6 @@ export default function initDecksController(db) {
   // get all cards from a single deck
   const deck = async (req, res) => {
     const { deckId } = req.params;
-    console.log('i am deck id ', deckId);
     try {
       const cards = await db.Deck.findOne({
         where: {
@@ -28,7 +27,19 @@ export default function initDecksController(db) {
     }
   };
 
+  const deckLength = async (req, res) => {
+    const { deckId } = req.params;
+    const deck = await db.Deck.findOne({
+      where: {
+        id: deckId,
+      },
+      include: [db.Card],
+    });
+    const { length } = deck.cards;
+    res.send({ length });
+  };
+
   return {
-    studyDecks, deck,
+    studyDecks, deck, deckLength,
   };
 }
