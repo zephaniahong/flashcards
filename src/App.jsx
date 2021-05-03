@@ -38,7 +38,7 @@ export default function App() {
   };
   if (studyState === "") {
     return (
-      <div>
+      <div className="row">
         <DashBoard
           updateStudyState={updateStudyState}
           updateSelectedDeck={updateSelectedDeck}
