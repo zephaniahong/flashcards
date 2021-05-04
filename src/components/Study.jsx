@@ -15,7 +15,7 @@ const Study = ({
     scoreState[index] += 1;
     setScoreState([...scoreState]);
   };
-
+  console.log("study time");
   return (
     <div className="row">
       <div className="col-3">

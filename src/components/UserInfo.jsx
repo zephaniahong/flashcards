@@ -9,10 +9,10 @@ const UserInfo = () => {
     setUserName(response.data.user.name);
   });
   return (
-    <div>
+    <React.Fragment>
       <p>{username}</p>
       <p>Total Cards Studied: {cardCount} </p>
-    </div>
+    </React.Fragment>
   );
 };
 

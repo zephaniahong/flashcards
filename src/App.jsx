@@ -27,20 +27,17 @@ export default function App() {
     setSession(session);
   };
 
-  // function to update study state
-  const updateStudyState = (newState) => {
-    setStudyState(newState);
-  };
-
   // function to update selected deck
   const updateSelectedDeck = (deckId) => {
     setSelectedDeck(deckId);
   };
+  console.log("i am study state", studyState);
   if (studyState === "") {
+    console.log("inside if statement - studystate = ''");
     return (
       <div>
         <DashBoard
-          updateStudyState={updateStudyState}
+          setStudyState={setStudyState}
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
           selectedDeck={selectedDeck}
@@ -50,7 +47,7 @@ export default function App() {
         />
       </div>
     );
-  } else if (studyState !== "") {
+  } else if (studyState === "study") {
     if (cardCounter + 1 <= numCards) {
       // display cards
       return (
@@ -78,5 +75,5 @@ export default function App() {
       );
     }
   }
-  return null;
+  return <div>HELLO</div>;
 }

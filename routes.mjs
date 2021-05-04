@@ -24,6 +24,9 @@ export default function routes(app) {
   // verify login details are correct
   app.post('/login', UsersController.verifyLogin);
 
+  // get user info
+  app.get('/userInfo', UsersController.userInfo);
+
   // get user stats
   app.get('/studydecks', DecksController.studyDecks);
 

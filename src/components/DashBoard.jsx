@@ -4,7 +4,7 @@ import Mastery from "./Mastery.jsx";
 import UserInfo from "./UserInfo.jsx";
 
 const DashBoard = ({
-  updateStudyState,
+  setStudyState,
   updateSelectedDeck,
   updateSession,
   selectedDeck,
@@ -12,17 +12,18 @@ const DashBoard = ({
   setClickedDeck,
   clickedDeck,
 }) => {
+  console.log("back to dashboard");
   return (
     <React.Fragment>
-      <div className="col-4">
-        <UserInfo />
+      <div className="row pb-2">
+        <div className="userInfo">
+          <UserInfo />
+          <Mastery clickedDeck={clickedDeck} />
+        </div>
       </div>
-      <div className="col-8">
-        <Mastery clickedDeck={clickedDeck} />
-      </div>
-      <div>
+      <div className="row">
         <StudyDecks
-          updateStudyState={updateStudyState}
+          setStudyState={setStudyState}
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
           selectedDeck={selectedDeck}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const StudyDecks = ({
-  updateStudyState,
+  setStudyState,
   updateSelectedDeck,
   updateSession,
   selectedDeck,
@@ -15,7 +15,6 @@ const StudyDecks = ({
     axios.post(`/createSession/${deckId}`).then((response) => {
       updateSession(response.data.session.id);
     });
-    updateStudyState("study");
   };
 
   // get deck data only once OR whenever there is a change
@@ -28,12 +27,15 @@ const StudyDecks = ({
 
   const listDropDown = [5, 10, 15].map((num) => (
     <li
+      key={num}
       onClick={() => {
         setNumCards(num);
         createSession(selectedDeck);
+        setStudyState("study");
+        console.log("updating study state to study");
       }}
     >
-      <a className="dropdown-item" href="#">
+      <a className="dropdown-item" href="">
         {num}
       </a>
     </li>
@@ -42,11 +44,11 @@ const StudyDecks = ({
   // create all the decks in card form
   const deckList = decks.map((deck) => (
     <div
+      key={deck.id}
       onClick={() => {
         setClickedDeck(deck.id);
       }}
-      className="card"
-      style={{ width: "12rem" }}
+      className="card col-4"
     >
       <div className="card-body">
         <h5 className="card-title">{deck.name}</h5>
@@ -62,7 +64,7 @@ const StudyDecks = ({
               updateSelectedDeck(deck.id);
             }}
           >
-            Dropdown button
+            Study
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             {listDropDown}
@@ -74,7 +76,7 @@ const StudyDecks = ({
 
   // check if deck data has been received
   if (decks.length > 1) {
-    return <div className="row">{deckList}</div>;
+    return <React.Fragment>{deckList}</React.Fragment>;
   }
   return <div />;
 };

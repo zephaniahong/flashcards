@@ -11,13 +11,13 @@ const Mastery = ({ clickedDeck }) => {
       let count = 0;
       // count how many 3's there are in mastery
       for (const key in mastery) {
-        if (mastery[key] == 3) {
+        if (mastery[key] === 3) {
           count += 1;
         }
       }
       // get length of deck
-      axios.get(`/deckLength/${clickedDeck}`).then((response) => {
-        const length = response.data.length;
+      axios.get(`/deckLength/${clickedDeck}`).then((response2) => {
+        const { length } = response2.data;
         setPercentMastery(Math.round((count / length) * 100));
       });
     });
@@ -29,7 +29,7 @@ const Mastery = ({ clickedDeck }) => {
         <div className="box">
           <div className="percent">
             <svg>
-              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70" />
               <circle
                 style={{
                   strokeDashoffset: `calc(440 - (440 * ${percentMastery}) / 100)`,
@@ -37,7 +37,7 @@ const Mastery = ({ clickedDeck }) => {
                 cx="70"
                 cy="70"
                 r="70"
-              ></circle>
+              />
             </svg>
             <div className="number">
               <h2>

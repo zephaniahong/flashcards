@@ -40,6 +40,7 @@ const FlashCard = ({
       <React.Fragment>
         <div
           onClick={() => {
+            // toggle between question and answer
             const state = cardState === "question" ? "answer" : "question";
             setCardState(state);
           }}

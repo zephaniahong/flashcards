@@ -28,12 +28,12 @@ const Summary = ({ selectedDeck, session, numCards, setStudyState }) => {
 
   return (
     <React.Fragment>
-      <p>Congratulations on studying {numCards} cards!</p>
+      {/* <p>Congratulations on studying {numCards} cards!</p>
       <p>Here is a summary: </p>
       <div className="no-idea score">{noIdea}</div>
       <div className="okay score">{okay}</div>
       <div className="perfect score">{perfect}</div>
-      <button onClick={() => setStudyState("")}>Back to Dashboard</button>
+      <button onClick={() => setStudyState("")}>Back to Dashboard</button> */}
     </React.Fragment>
   );
 };
