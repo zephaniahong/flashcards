@@ -38,7 +38,7 @@ export default function App() {
   };
   if (studyState === "") {
     return (
-      <div className="row">
+      <div>
         <DashBoard
           updateStudyState={updateStudyState}
           updateSelectedDeck={updateSelectedDeck}
@@ -67,8 +67,13 @@ export default function App() {
     } else {
       // display summary component
       return (
-        <div>
-          <Summary selectedDeck={selectedDeck} session={session} />
+        <div className="">
+          <Summary
+            selectedDeck={selectedDeck}
+            session={session}
+            numCards={numCards}
+            setStudyState={setStudyState}
+          />
         </div>
       );
     }

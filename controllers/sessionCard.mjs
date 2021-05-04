@@ -13,12 +13,11 @@ export default function initSessionCardsController(db) {
         sessionId,
       },
     );
-    res.send(200);
+    res.sendStatus(200);
   };
 
   const sessionInfo = async (req, res) => {
     const { sessionId } = req.params;
-    console.log('****************************', sessionId);
     try {
       const allSessionCards = await db.SessionCard.findAll(
         {
@@ -27,7 +26,6 @@ export default function initSessionCardsController(db) {
           },
         },
       );
-      console.log('iammmm*******************************', allSessionCards);
       res.send(allSessionCards);
     } catch (err) {
       console.log(err);
