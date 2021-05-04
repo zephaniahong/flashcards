@@ -8,6 +8,7 @@ const Study = ({
   numCards,
   setCardCounter,
   cardCounter,
+  deckLength,
 }) => {
   const [scoreState, setScoreState] = useState([0, 0, 0]);
 
@@ -15,11 +16,10 @@ const Study = ({
     scoreState[index] += 1;
     setScoreState([...scoreState]);
   };
-  console.log("study time");
   return (
     <div className="row">
       <div className="col-3">
-        <Stats scoreState={scoreState} />
+        <Stats scoreState={scoreState} deckLength={deckLength} />
       </div>
       <div className="col-9">
         <FlashCard

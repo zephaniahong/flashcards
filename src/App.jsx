@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Study from "./components/Study.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import Summary from "./components/Summary.jsx";
@@ -8,7 +9,7 @@ export default function App() {
   const [studyState, setStudyState] = useState("");
 
   // keep track of the deck id which was selected
-  const [selectedDeck, setSelectedDeck] = useState(0);
+  const [selectedDeck, setSelectedDeck] = useState(1);
 
   // note what session it is
   const [session, setSession] = useState(0);
@@ -22,6 +23,9 @@ export default function App() {
   // deck that user clicked on - to see stats
   const [clickedDeck, setClickedDeck] = useState(null);
 
+  // deck length
+  const [deckLength, setDeckLength] = useState(0);
+
   //function to update session
   const updateSession = (session) => {
     setSession(session);
@@ -31,12 +35,20 @@ export default function App() {
   const updateSelectedDeck = (deckId) => {
     setSelectedDeck(deckId);
   };
-  console.log("i am study state", studyState);
+
+  // get length of deck
+  if (selectedDeck !== 0) {
+    axios.get(`/deckLength/${selectedDeck}`).then((response) => {
+      const { length } = response.data;
+      setDeckLength(length);
+    });
+  }
+
   if (studyState === "") {
     console.log("inside if statement - studystate = ''");
     return (
-      <div>
-        <DashBoard
+      <div className="">
+        {/* <DashBoard
           setStudyState={setStudyState}
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
@@ -44,6 +56,14 @@ export default function App() {
           setNumCards={setNumCards}
           setClickedDeck={setClickedDeck}
           clickedDeck={clickedDeck}
+        /> */}
+        <Study
+          selectedDeck={selectedDeck}
+          session={session}
+          numCards={numCards}
+          setCardCounter={setCardCounter}
+          cardCounter={cardCounter}
+          deckLength={deckLength}
         />
       </div>
     );
@@ -52,13 +72,13 @@ export default function App() {
       // display cards
       return (
         <div>
-          <Study
+          {/* <Study
             selectedDeck={selectedDeck}
             session={session}
             numCards={numCards}
             setCardCounter={setCardCounter}
             cardCounter={cardCounter}
-          />
+          /> */}
         </div>
       );
     } else {

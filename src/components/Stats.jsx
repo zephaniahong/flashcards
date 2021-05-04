@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 
-const Stats = ({ scoreState }) => {
+const Stats = ({ scoreState, deckLength }) => {
   const scores = scoreState.map((score, index) => {
+    let familiarity;
     if (index === 0) {
-      return <div className="score no-idea">{score}</div>;
+      familiarity = "bg-danger";
     } else if (index === 1) {
-      return <div className="score okay">{score}</div>;
-    } else {
-      return <div className="score perfect">{score}</div>;
+      familiarity = "bg-warning";
+    } else if (index === 2) {
+      familiarity = "bg-success";
     }
+    console.log(`${Math.floor((score / deckLength) * 100)}%`);
+    return (
+      <div>
+        <div className="progress">
+          <div
+            className={`progress-bar ${familiarity}`}
+            role="progressbar"
+            style={{
+              width: `${Math.floor((score / deckLength) * 100)}%`,
+              color: "black",
+            }}
+          ></div>
+        </div>
+        {score} / {deckLength}
+      </div>
+    );
   });
 
   return (

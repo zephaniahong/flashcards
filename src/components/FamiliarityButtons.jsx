@@ -13,15 +13,15 @@ const FamiliarityButtons = ({
     // determine color of button
     let color;
     if (index === 0) {
-      color = "no-idea";
+      color = "btn-danger";
     } else if (index === 1) {
-      color = "okay";
+      color = "btn-warning";
     } else {
-      color = "perfect";
+      color = "btn-success";
     }
     return (
       <button
-        className={`familiarityButton col btn btn-primary ${color}`}
+        className={`familiarityButton col btn ${color}`}
         onClick={() => {
           // change card being displayed
           setCardCounter(cardCounter + 1);
