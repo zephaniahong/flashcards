@@ -74,6 +74,8 @@ export default function App() {
           <Summary
             selectedDeck={selectedDeck}
             session={session}
+            setNumCards={setNumCards}
+            setCardCounter={setCardCounter}
             numCards={numCards}
             setStudyState={setStudyState}
           />

@@ -1,7 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Summary = ({ selectedDeck, session, numCards, setStudyState }) => {
+const Summary = ({
+  selectedDeck,
+  session,
+  numCards,
+  setStudyState,
+  setCardCounter,
+  setNumCards,
+}) => {
   const [noIdea, setNoIdea] = useState(0);
   const [okay, setOkay] = useState(0);
   const [perfect, setPerfect] = useState(0);
@@ -34,7 +41,14 @@ const Summary = ({ selectedDeck, session, numCards, setStudyState }) => {
       <div className="bg-warning score">{okay}</div>
       <div className="bg-success score">{perfect}</div>
       <div>
-        <button className="btn mt-2" onClick={() => setStudyState("")}>
+        <button
+          className="btn mt-2"
+          onClick={() => {
+            setStudyState("");
+            setCardCounter(0);
+            setNumCards(0);
+          }}
+        >
           Back to Dashboard
         </button>
       </div>
