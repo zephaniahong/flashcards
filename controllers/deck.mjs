@@ -12,6 +12,7 @@ export default function initDecksController(db) {
   // get all cards from a single deck
   const deck = async (req, res) => {
     const { deckId } = req.params;
+    const { userId } = req.cookies;
     try {
       const cards = await db.Deck.findOne({
         where: {
@@ -20,6 +21,13 @@ export default function initDecksController(db) {
         include: {
           model: db.Card,
         },
+      });
+
+      const allSessionCards = await db.Session.findAll({
+        where: {
+          [Op.and]: [{ deckId }, { userId }],
+        },
+        include: [db.SessionCard],
       });
       res.send(cards);
     } catch (err) {
