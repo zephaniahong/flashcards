@@ -16,6 +16,7 @@ const Study = ({
     scoreState[index] += 1;
     setScoreState([...scoreState]);
   };
+  console.log("inside study component");
   return (
     <div className="row">
       <div className="col-3 stats">

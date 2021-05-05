@@ -9,7 +9,7 @@ export default function App() {
   const [studyState, setStudyState] = useState("");
 
   // keep track of the deck id which was selected
-  const [selectedDeck, setSelectedDeck] = useState(1);
+  const [selectedDeck, setSelectedDeck] = useState(0);
 
   // note what session it is
   const [session, setSession] = useState(0);
@@ -36,17 +36,9 @@ export default function App() {
     setSelectedDeck(deckId);
   };
 
-  // get length of deck
-  if (selectedDeck !== 0) {
-    axios.get(`/deckLength/${selectedDeck}`).then((response) => {
-      const { length } = response.data;
-      setDeckLength(length);
-    });
-  }
-
   if (studyState === "") {
     return (
-      <div className="summary row">
+      <div className="">
         <DashBoard
           setStudyState={setStudyState}
           updateSelectedDeck={updateSelectedDeck}
@@ -55,6 +47,8 @@ export default function App() {
           setNumCards={setNumCards}
           setClickedDeck={setClickedDeck}
           clickedDeck={clickedDeck}
+          setSelectedDeck={setSelectedDeck}
+          setDeckLength={setDeckLength}
         />
       </div>
     );
@@ -69,6 +63,7 @@ export default function App() {
             numCards={numCards}
             setCardCounter={setCardCounter}
             cardCounter={cardCounter}
+            deckLength={deckLength}
           />
         </div>
       );

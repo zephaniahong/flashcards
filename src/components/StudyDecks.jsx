@@ -8,6 +8,8 @@ const StudyDecks = ({
   selectedDeck,
   setNumCards,
   setClickedDeck,
+  setSelectedDeck,
+  setDeckLength,
 }) => {
   const [decks, setDecks] = useState([]);
   // create new session
@@ -32,12 +34,14 @@ const StudyDecks = ({
         setNumCards(num);
         createSession(selectedDeck);
         setStudyState("study");
-        console.log("updating study state to study");
+        setSelectedDeck(selectedDeck);
+        axios.get(`/deckLength/${selectedDeck}`).then((response) => {
+          const { length } = response.data;
+          setDeckLength(Math.min(length, num));
+        });
       }}
     >
-      <a className="dropdown-item" href="">
-        {num}
-      </a>
+      <span className="dropdown-item">{num}</span>
     </li>
   ));
 
@@ -48,11 +52,10 @@ const StudyDecks = ({
       onClick={() => {
         setClickedDeck(deck.id);
       }}
-      className="card col-4"
+      className="card col-4 h-50"
     >
-      <div className="card-body">
+      <div className="card-body d-flex align-items-center text-center justify-content-center row">
         <h5 className="card-title">{deck.name}</h5>
-        <p className="card-text">Some quick example text</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"

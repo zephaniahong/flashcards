@@ -11,6 +11,8 @@ const DashBoard = ({
   setNumCards,
   setClickedDeck,
   clickedDeck,
+  setSelectedDeck,
+  setDeckLength,
 }) => {
   console.log("back to dashboard");
   return (
@@ -29,6 +31,8 @@ const DashBoard = ({
           selectedDeck={selectedDeck}
           setNumCards={setNumCards}
           setClickedDeck={setClickedDeck}
+          setSelectedDeck={setSelectedDeck}
+          setDeckLength={setDeckLength}
         />
       </div>
     </React.Fragment>
