@@ -18,7 +18,7 @@ const Study = ({
   };
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-3 stats">
         <Stats scoreState={scoreState} deckLength={deckLength} />
       </div>
       <div className="col-9">

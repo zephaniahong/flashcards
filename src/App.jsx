@@ -45,10 +45,9 @@ export default function App() {
   }
 
   if (studyState === "") {
-    console.log("inside if statement - studystate = ''");
     return (
-      <div className="">
-        {/* <DashBoard
+      <div className="summary row">
+        <DashBoard
           setStudyState={setStudyState}
           updateSelectedDeck={updateSelectedDeck}
           updateSession={updateSession}
@@ -56,14 +55,6 @@ export default function App() {
           setNumCards={setNumCards}
           setClickedDeck={setClickedDeck}
           clickedDeck={clickedDeck}
-        /> */}
-        <Study
-          selectedDeck={selectedDeck}
-          session={session}
-          numCards={numCards}
-          setCardCounter={setCardCounter}
-          cardCounter={cardCounter}
-          deckLength={deckLength}
         />
       </div>
     );
@@ -72,19 +63,19 @@ export default function App() {
       // display cards
       return (
         <div>
-          {/* <Study
+          <Study
             selectedDeck={selectedDeck}
             session={session}
             numCards={numCards}
             setCardCounter={setCardCounter}
             cardCounter={cardCounter}
-          /> */}
+          />
         </div>
       );
     } else {
       // display summary component
       return (
-        <div className="">
+        <div className="summary row">
           <Summary
             selectedDeck={selectedDeck}
             session={session}
