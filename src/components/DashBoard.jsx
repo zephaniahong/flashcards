@@ -14,15 +14,8 @@ const DashBoard = ({
   setSelectedDeck,
   setDeckLength,
 }) => {
-  console.log("back to dashboard");
   return (
     <React.Fragment>
-      <div className="row pb-2">
-        <div className="userInfo">
-          <UserInfo />
-          <Mastery clickedDeck={clickedDeck} />
-        </div>
-      </div>
       <div className="row">
         <StudyDecks
           setStudyState={setStudyState}
@@ -33,7 +26,14 @@ const DashBoard = ({
           setClickedDeck={setClickedDeck}
           setSelectedDeck={setSelectedDeck}
           setDeckLength={setDeckLength}
+          clickedDeck={clickedDeck}
         />
+      </div>
+      <div className="row pb-2">
+        <div className="userInfo">
+          <UserInfo />
+          <Mastery clickedDeck={clickedDeck} />
+        </div>
       </div>
     </React.Fragment>
   );
