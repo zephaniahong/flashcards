@@ -1,9 +1,13 @@
 import axios from "axios";
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ setStudyState }) => {
   const logout = () => {
     axios.get("/logout");
+  };
+
+  const home = () => {
+    setStudyState("");
   };
 
   return (
@@ -34,7 +38,7 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse nav-bar" id="navbarNav">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
+          <li className="nav-item" onClick={home}>
             <a className="nav-link" aria-current="page" href="#">
               Home
             </a>

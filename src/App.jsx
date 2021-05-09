@@ -39,7 +39,7 @@ export default function App() {
   if (studyState === "") {
     return (
       <div className="row">
-        <Navbar />
+        <Navbar setStudyState={setStudyState} />
         <div className="">
           <DashBoard
             setStudyState={setStudyState}
