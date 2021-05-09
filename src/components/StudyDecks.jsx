@@ -11,16 +11,9 @@ const StudyDecks = ({
   setSelectedDeck,
   setDeckLength,
   clickedDeck,
+  setDecks,
+  decks,
 }) => {
-  const [decks, setDecks] = useState([]);
-
-  // create new session
-  const createSession = (deckId) => {
-    axios.post(`/createSession/${deckId}`).then((response) => {
-      updateSession(response.data.session.id);
-    });
-  };
-
   // get deck data only once OR whenever there is a change
   useEffect(() => {
     axios.get("/studyDecks").then((response) => {
@@ -28,24 +21,6 @@ const StudyDecks = ({
       setDecks(deckArray);
     });
   }, []);
-
-  const listDropDown = [5, 10, 15].map((num) => (
-    <li
-      key={num}
-      onClick={() => {
-        setNumCards(num);
-        createSession(selectedDeck);
-        setStudyState("study");
-        setSelectedDeck(selectedDeck);
-        axios.get(`/deckLength/${selectedDeck}`).then((response) => {
-          const { length } = response.data;
-          setDeckLength(Math.min(length, num));
-        });
-      }}
-    >
-      <span className="dropdown-item">Set of {num}</span>
-    </li>
-  ));
 
   // create all the decks in nav tab
   const deckList = decks.map((deck) => {
@@ -57,7 +32,7 @@ const StudyDecks = ({
     }
     return (
       <li
-        onClick={(e) => {
+        onClick={() => {
           setClickedDeck(deck.id);
         }}
         className={`nav-item ${active}`}

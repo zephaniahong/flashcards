@@ -14,6 +14,7 @@ const DashBoard = ({
   setSelectedDeck,
   setDeckLength,
 }) => {
+  const [decks, setDecks] = useState([]);
   return (
     <React.Fragment>
       <div className="row">
@@ -27,12 +28,25 @@ const DashBoard = ({
           setSelectedDeck={setSelectedDeck}
           setDeckLength={setDeckLength}
           clickedDeck={clickedDeck}
+          setDecks={setDecks}
+          decks={decks}
         />
       </div>
       <div className="row pb-2">
         <div className="userInfo">
           <UserInfo />
-          <Mastery clickedDeck={clickedDeck} />
+          <Mastery
+            clickedDeck={clickedDeck}
+            setStudyState={setStudyState}
+            updateSelectedDeck={updateSelectedDeck}
+            updateSession={updateSession}
+            selectedDeck={selectedDeck}
+            setNumCards={setNumCards}
+            setClickedDeck={setClickedDeck}
+            setSelectedDeck={setSelectedDeck}
+            setDeckLength={setDeckLength}
+            decks={decks}
+          />
         </div>
       </div>
     </React.Fragment>
