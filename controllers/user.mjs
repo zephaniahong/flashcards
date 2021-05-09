@@ -53,7 +53,10 @@ export default function initUsersController(db) {
     res.send({ user, cardCount });
   };
 
+  const logout = async (req, res) => {
+    res.clearCookie('userId');
+  };
   return {
-    login, verifyLogin, userInfo,
+    login, verifyLogin, userInfo, logout,
   };
 }

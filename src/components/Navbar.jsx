@@ -1,6 +1,11 @@
+import axios from "axios";
 import React from "react";
 
 const Navbar = () => {
+  const logout = () => {
+    axios.get("/logout");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light mb-3 p-0">
       <a className="navbar-brand" href="#">
@@ -36,8 +41,8 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className="navbar-nav">
-          <li className="nav-item logout">
-            <a className="nav-link" href="#">
+          <li className="nav-item logout" onClick={logout}>
+            <a className="nav-link" href="/login">
               Logout
             </a>
           </li>

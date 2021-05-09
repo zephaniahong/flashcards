@@ -46,4 +46,6 @@ export default function routes(app) {
   app.post('/sessionCard/:sessionId/:cardId/:familiarity', SessionCardsController.newSessionCard);
 
   app.get('/allSessions/:deckId', SessionsController.allSessions);
+
+  app.get('/logout', UsersController.logout);
 }
