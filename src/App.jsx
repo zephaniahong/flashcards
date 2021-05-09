@@ -3,6 +3,7 @@ import axios from "axios";
 import Study from "./components/Study.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import Summary from "./components/Summary.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 export default function App() {
   // to decide which component to render - dashboard or study
@@ -35,21 +36,23 @@ export default function App() {
   const updateSelectedDeck = (deckId) => {
     setSelectedDeck(deckId);
   };
-
   if (studyState === "") {
     return (
-      <div className="">
-        <DashBoard
-          setStudyState={setStudyState}
-          updateSelectedDeck={updateSelectedDeck}
-          updateSession={updateSession}
-          selectedDeck={selectedDeck}
-          setNumCards={setNumCards}
-          setClickedDeck={setClickedDeck}
-          clickedDeck={clickedDeck}
-          setSelectedDeck={setSelectedDeck}
-          setDeckLength={setDeckLength}
-        />
+      <div className="row">
+        <Navbar />
+        <div className="">
+          <DashBoard
+            setStudyState={setStudyState}
+            updateSelectedDeck={updateSelectedDeck}
+            updateSession={updateSession}
+            selectedDeck={selectedDeck}
+            setNumCards={setNumCards}
+            setClickedDeck={setClickedDeck}
+            clickedDeck={clickedDeck}
+            setSelectedDeck={setSelectedDeck}
+            setDeckLength={setDeckLength}
+          />
+        </div>
       </div>
     );
   } else if (studyState === "study") {
@@ -57,31 +60,37 @@ export default function App() {
       // display cards
       return (
         <div>
-          <Study
-            selectedDeck={selectedDeck}
-            session={session}
-            numCards={numCards}
-            setCardCounter={setCardCounter}
-            cardCounter={cardCounter}
-            deckLength={deckLength}
-          />
+          <Navbar />
+          <div>
+            <Study
+              selectedDeck={selectedDeck}
+              session={session}
+              numCards={numCards}
+              setCardCounter={setCardCounter}
+              cardCounter={cardCounter}
+              deckLength={deckLength}
+            />
+          </div>
         </div>
       );
     } else {
       // display summary component
       return (
-        <div className="summary row">
-          <Summary
-            selectedDeck={selectedDeck}
-            session={session}
-            setNumCards={setNumCards}
-            setCardCounter={setCardCounter}
-            numCards={numCards}
-            setStudyState={setStudyState}
-          />
+        <div>
+          <Navbar className="row" />
+          <div className="summary row">
+            <Summary
+              selectedDeck={selectedDeck}
+              session={session}
+              setNumCards={setNumCards}
+              setCardCounter={setCardCounter}
+              numCards={numCards}
+              setStudyState={setStudyState}
+            />
+          </div>
         </div>
       );
     }
   }
-  return <div>HELLO</div>;
+  return;
 }
