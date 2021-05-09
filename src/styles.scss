@@ -86,7 +86,7 @@ svg circle:nth-child(1) {
 }
 
 svg circle:nth-child(2) {
-  // stroke-dashoffset: calc(440 - (440 * 50) / 100);
+  stroke-dashoffset: calc(440 - (440 * 50) / 100);
   stroke: #51c4d3;
 }
 
@@ -160,7 +160,7 @@ a {
   color: black;
 }
 
-svg {
+nav svg {
   height: 20px;
   width: 20px;
 }
@@ -168,10 +168,6 @@ svg {
 .nav-bar ul:nth-of-type(1) {
   margin-right: auto;
 }
-
-// .nav-tabs li {
-//   background-color: red;
-// }
 
 .active a {
   background-color: #f2fbf6 !important;
