@@ -60,7 +60,7 @@ export default function App() {
       // display cards
       return (
         <div>
-          <Navbar />
+          <Navbar setStudyState={setStudyState} />
           <div>
             <Study
               selectedDeck={selectedDeck}
@@ -77,7 +77,7 @@ export default function App() {
       // display summary component
       return (
         <div>
-          <Navbar className="row" />
+          <Navbar className="row" setStudyState={setStudyState} />
           <div className="summary row">
             <Summary
               selectedDeck={selectedDeck}

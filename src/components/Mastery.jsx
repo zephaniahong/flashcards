@@ -21,31 +21,6 @@ const Mastery = ({
     });
   };
   const [percentMastery, setPercentMastery] = useState(0);
-
-  const StudyButton = () => {
-    if (clickedDeck >= 1) {
-      return (
-        <div className="text-center">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            onClick={() => {
-              updateSelectedDeck(decks);
-            }}
-          >
-            Study
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {listDropDown}
-          </ul>
-        </div>
-      );
-    }
-    return null;
-  };
   const listDropDown = [5, 10, 15].map((num) => (
     <li
       key={num}
@@ -63,6 +38,29 @@ const Mastery = ({
       <span className="dropdown-item">Set of {num}</span>
     </li>
   ));
+  let studyButton;
+  if (clickedDeck >= 1) {
+    studyButton = (
+      <div className="text-center">
+        <button
+          className="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          onClick={() => {
+            updateSelectedDeck(decks);
+          }}
+        >
+          Study
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          {listDropDown}
+        </ul>
+      </div>
+    );
+  }
+
   // get all sessions for a single deck
   if (clickedDeck !== null) {
     axios.get(`/allSessions/${clickedDeck}`).then((response) => {
@@ -110,7 +108,7 @@ const Mastery = ({
           </div>
         </div>
       </div>
-      <StudyButton />
+      {studyButton}
     </div>
   );
 };
