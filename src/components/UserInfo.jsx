@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 const UserInfo = () => {
   const [username, setUserName] = useState();
   const [cardCount, setCardCount] = useState();
-  axios.get("/userInfo").then((response) => {
-    setCardCount(response.data.cardCount);
-    setUserName(response.data.user.name);
+  useEffect(() => {
+    axios.get("/userInfo").then((response) => {
+      setCardCount(response.data.cardCount);
+      setUserName(response.data.user.name);
+    });
   });
+
   return (
     <React.Fragment>
       <p>{username}</p>

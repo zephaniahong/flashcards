@@ -48,4 +48,7 @@ export default function routes(app) {
   app.get('/allSessions/:deckId', SessionsController.allSessions);
 
   app.get('/logout', UsersController.logout);
+
+  // get all session cards of a deck by a user
+  app.get('/allSessionCards/:deckId', SessionCardsController.allSessionCards);
 }

@@ -9,6 +9,7 @@ const Study = ({
   setCardCounter,
   cardCounter,
   deckLength,
+  clickedDeck,
 }) => {
   const [scoreState, setScoreState] = useState([0, 0, 0]);
 
@@ -16,7 +17,6 @@ const Study = ({
     scoreState[index] += 1;
     setScoreState([...scoreState]);
   };
-  console.log("inside study component");
   return (
     <div className="row">
       <div className="col-3 stats">
@@ -24,6 +24,7 @@ const Study = ({
       </div>
       <div className="col-9">
         <FlashCard
+          clickedDeck={clickedDeck}
           selectedDeck={selectedDeck}
           session={session}
           updateScoreState={updateScoreState}

@@ -37,7 +37,7 @@ const FamiliarityButtons = ({
       </button>
     );
   });
-  return <React.Fragment>{familiarityButtons}</React.Fragment>;
+  return <>{familiarityButtons}</>;
 };
 
 export default FamiliarityButtons;

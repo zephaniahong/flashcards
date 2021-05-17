@@ -3,6 +3,9 @@ export default function PriorityQueue() {
   this.printCollection = function () {
     (console.log(collection));
   };
+  this.collection = function () {
+    return collection;
+  };
   this.enqueue = function (element) {
     if (this.isEmpty()) {
       collection.push(element);

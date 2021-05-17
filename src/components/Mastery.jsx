@@ -1,23 +1,21 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
+/* eslint-disable quotes */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Mastery = ({
   setStudyState,
-  updateSelectedDeck,
-  updateSession,
-  selectedDeck,
+  setSession,
   setNumCards,
-  setClickedDeck,
-  setSelectedDeck,
   setDeckLength,
   clickedDeck,
-  setDecks,
-  decks,
+  setClickedDeck,
 }) => {
   // create new session
   const createSession = (deckId) => {
     axios.post(`/createSession/${deckId}`).then((response) => {
-      updateSession(response.data.session.id);
+      setSession(response.data.session.id);
     });
   };
   const [percentMastery, setPercentMastery] = useState(0);
@@ -28,7 +26,6 @@ const Mastery = ({
         setNumCards(num);
         createSession(clickedDeck);
         setStudyState("study");
-        setSelectedDeck(clickedDeck);
         axios.get(`/deckLength/${clickedDeck}`).then((response) => {
           const { length } = response.data;
           setDeckLength(Math.min(length, num));
@@ -40,6 +37,7 @@ const Mastery = ({
   ));
   let studyButton;
   if (clickedDeck >= 1) {
+    // create study button
     studyButton = (
       <div className="text-center">
         <button
@@ -48,9 +46,6 @@ const Mastery = ({
           id="dropdownMenuButton1"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          onClick={() => {
-            updateSelectedDeck(decks);
-          }}
         >
           Study
         </button>
@@ -61,24 +56,23 @@ const Mastery = ({
     );
   }
 
-  // get all sessions for a single deck
-  if (clickedDeck !== null) {
-    axios.get(`/allSessions/${clickedDeck}`).then((response) => {
-      const mastery = response.data;
-      let count = 0;
-      // count how many 3's there are in mastery
-      for (const key in mastery) {
-        if (mastery[key] === 3) {
-          count += 1;
+  useEffect(() => {
+    if (clickedDeck !== null) {
+      axios.get(`/allSessions/${clickedDeck}`).then((response) => {
+        const mastery = response.data;
+        let count = 0;
+        for (const key in mastery) {
+          if (mastery[key] === 3) {
+            count += 1;
+          }
         }
-      }
-      // get length of deck
-      axios.get(`/deckLength/${clickedDeck}`).then((response2) => {
-        const { length } = response2.data;
-        setPercentMastery(Math.round((count / length) * 100));
+        axios.get(`/deckLength/${clickedDeck}`).then((response2) => {
+          const { length } = response2.data;
+          setPercentMastery(Math.round((count / length) * 100));
+        });
       });
-    });
-  }
+    }
+  });
 
   return (
     <div>

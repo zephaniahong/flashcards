@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Study from "./components/Study.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import Summary from "./components/Summary.jsx";
@@ -8,9 +7,6 @@ import Navbar from "./components/Navbar.jsx";
 export default function App() {
   // to decide which component to render - dashboard or study
   const [studyState, setStudyState] = useState("");
-
-  // keep track of the deck id which was selected
-  const [selectedDeck, setSelectedDeck] = useState(0);
 
   // note what session it is
   const [session, setSession] = useState(0);
@@ -27,15 +23,6 @@ export default function App() {
   // deck length
   const [deckLength, setDeckLength] = useState(0);
 
-  //function to update session
-  const updateSession = (session) => {
-    setSession(session);
-  };
-
-  // function to update selected deck
-  const updateSelectedDeck = (deckId) => {
-    setSelectedDeck(deckId);
-  };
   if (studyState === "") {
     return (
       <div className="row">
@@ -43,13 +30,10 @@ export default function App() {
         <div className="">
           <DashBoard
             setStudyState={setStudyState}
-            updateSelectedDeck={updateSelectedDeck}
-            updateSession={updateSession}
-            selectedDeck={selectedDeck}
+            setSession={setSession}
             setNumCards={setNumCards}
             setClickedDeck={setClickedDeck}
             clickedDeck={clickedDeck}
-            setSelectedDeck={setSelectedDeck}
             setDeckLength={setDeckLength}
           />
         </div>
@@ -63,12 +47,12 @@ export default function App() {
           <Navbar setStudyState={setStudyState} />
           <div>
             <Study
-              selectedDeck={selectedDeck}
               session={session}
               numCards={numCards}
               setCardCounter={setCardCounter}
               cardCounter={cardCounter}
               deckLength={deckLength}
+              clickedDeck={clickedDeck}
             />
           </div>
         </div>
@@ -80,7 +64,6 @@ export default function App() {
           <Navbar className="row" setStudyState={setStudyState} />
           <div className="summary row">
             <Summary
-              selectedDeck={selectedDeck}
               session={session}
               setNumCards={setNumCards}
               setCardCounter={setCardCounter}

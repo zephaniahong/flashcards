@@ -2,27 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FamiliarityButtons from "./FamiliarityButtons.jsx";
 import PriorityQueue from "../priorityQueue";
-
-function shuffle(array) {
-  let currentIndex = array.length;
-  let temporaryValue;
-  let randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
 const FlashCard = ({
   selectedDeck,
   session,
@@ -30,8 +9,9 @@ const FlashCard = ({
   numCards,
   setCardCounter,
   cardCounter,
+  clickedDeck,
 }) => {
-  const [deck, setDeck] = useState();
+  const [deck, setDeck] = useState(null);
   const [cardState, setCardState] = useState("question");
 
   // function to update card state to question
@@ -41,9 +21,33 @@ const FlashCard = ({
 
   // set deck state after user chooses deck
   useEffect(() => {
+    const srDeck = new PriorityQueue();
     if (selectedDeck !== 0) {
       axios.get(`/deck/${selectedDeck}`).then((response) => {
-        setDeck(shuffle(response.data.cards));
+        const dbDeck = response.data.cards;
+        let newDeck = [];
+        for (let i = 0; i < dbDeck.length; i += 1) {
+          newDeck.push([dbDeck[i], 0]);
+        }
+        // get all session_cards of a deck by a user
+        axios.get(`/allSessionCards/${selectedDeck}`).then((response2) => {
+          const allSessionCards = response2.data;
+          for (let i = 0; i < newDeck.length; i += 1) {
+            for (let j = 0; j < allSessionCards.length; j += 1) {
+              if (allSessionCards[j].cardId === newDeck[i][0].id) {
+                // compare familiarity
+                if (allSessionCards[j].familiarity > newDeck[i][1]) {
+                  newDeck[i][1] = allSessionCards[j].familiarity;
+                }
+              }
+            }
+          }
+          for (let i = 0; i < newDeck.length; i += 1) {
+            srDeck.enqueue(newDeck[i]);
+          }
+          console.log(srDeck.collection());
+          setDeck(srDeck.collection());
+        });
       });
     }
   }, []);
@@ -52,9 +56,9 @@ const FlashCard = ({
     let card;
     // show question or answer
     if (cardState === "question") {
-      card = <p>{deck[cardCounter].question}</p>;
+      card = <p>{deck[cardCounter][0].question}</p>;
     } else {
-      card = <p>{deck[cardCounter].answer}</p>;
+      card = <p>{deck[cardCounter][0].answer}</p>;
     }
     // show cards while it is less than the number of cards chosen by user
     return (

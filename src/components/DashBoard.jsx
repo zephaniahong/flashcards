@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import StudyDecks from "./StudyDecks.jsx";
 import Mastery from "./Mastery.jsx";
 import UserInfo from "./UserInfo.jsx";
 
 const DashBoard = ({
   setStudyState,
-  updateSelectedDeck,
-  updateSession,
-  selectedDeck,
+  setSession,
   setNumCards,
   setClickedDeck,
   clickedDeck,
-  setSelectedDeck,
   setDeckLength,
 }) => {
   const [decks, setDecks] = useState([]);
@@ -19,14 +16,7 @@ const DashBoard = ({
     <React.Fragment>
       <div className="row">
         <StudyDecks
-          setStudyState={setStudyState}
-          updateSelectedDeck={updateSelectedDeck}
-          updateSession={updateSession}
-          selectedDeck={selectedDeck}
-          setNumCards={setNumCards}
           setClickedDeck={setClickedDeck}
-          setSelectedDeck={setSelectedDeck}
-          setDeckLength={setDeckLength}
           clickedDeck={clickedDeck}
           setDecks={setDecks}
           decks={decks}
@@ -38,12 +28,9 @@ const DashBoard = ({
           <Mastery
             clickedDeck={clickedDeck}
             setStudyState={setStudyState}
-            updateSelectedDeck={updateSelectedDeck}
-            updateSession={updateSession}
-            selectedDeck={selectedDeck}
+            setSession={setSession}
             setNumCards={setNumCards}
             setClickedDeck={setClickedDeck}
-            setSelectedDeck={setSelectedDeck}
             setDeckLength={setDeckLength}
             decks={decks}
           />

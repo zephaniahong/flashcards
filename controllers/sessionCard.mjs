@@ -31,5 +31,35 @@ export default function initSessionCardsController(db) {
       console.log(err);
     }
   };
-  return { newSessionCard, sessionInfo };
+
+  const allSessionCards = async (req, res) => {
+    const { userId } = req.cookies;
+    const { deckId } = req.params;
+    // get all sessions of a user for the specified deck id
+    try {
+      // all sessions for specified deck
+      const sessions = await db.Session.findAll({
+        where: {
+          [Op.and]: [
+            { deckId },
+            { userId },
+          ],
+        },
+      });
+
+      // reduce array of objects to array of session ids
+      const sessionIds = sessions.map((session) => session.id);
+      // get all session cards in the array of session ids
+      const allSessionCards = await db.SessionCard.findAll({
+        where: {
+          sessionId: sessionIds,
+        },
+      });
+
+      res.send(allSessionCards);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return { newSessionCard, sessionInfo, allSessionCards };
 }

@@ -10,7 +10,6 @@ const Stats = ({ scoreState, deckLength }) => {
     } else if (index === 2) {
       familiarity = "bg-success";
     }
-    console.log(`${Math.floor((score / deckLength) * 100)}%`);
     return (
       <div>
         <div className="progress">
