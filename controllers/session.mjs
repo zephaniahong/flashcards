@@ -53,23 +53,10 @@ export default function initSessionsController(db) {
       const mastery = {};
       // map out an object with cardId as the key and max familiarity as value
       for (let i = 0; i < cardIds.length; i += 1) {
-        for (let j = 0; j < allSessionCards.length; j += 1) {
+        for (let j = allSessionCards.length - 1; j >= 0; j -= 1) {
           if (cardIds[i] === allSessionCards[j].cardId) {
-            // check if id already exists in mastery
-            if (cardIds[i] in mastery) {
-              // if id in mastery and familiarity is 3, break out of for loop
-              if (allSessionCards[j].familiarity === 3) {
-                mastery[cardIds[i]] = 3;
-                break;
-              }
-              // check if familiarity greater than what is in mastery
-              else if (allSessionCards[j].familiarity > mastery[cardIds[i]]) {
-                mastery[cardIds[i]] = allSessionCards[j].familiarity;
-              }
-            }
-            else {
-              mastery[cardIds[i]] = allSessionCards[j].familiarity;
-            }
+            mastery[cardIds[i]] = allSessionCards[j].familiarity;
+            break;
           }
         }
       }

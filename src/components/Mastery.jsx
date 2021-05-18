@@ -59,6 +59,7 @@ const Mastery = ({
     if (clickedDeck !== null) {
       axios.get(`/allSessions/${clickedDeck}`).then((response) => {
         const mastery = response.data;
+        console.log(mastery);
         let count = 0;
         for (const key in mastery) {
           if (mastery[key] === 3) {
