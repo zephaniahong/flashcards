@@ -18,7 +18,7 @@ const Mastery = ({
     });
   };
   const [percentMastery, setPercentMastery] = useState(0);
-  const listDropDown = [5, 10, 15].map((num) => (
+  const listDropDown = [5, 10].map((num) => (
     <li
       key={num}
       onClick={() => {
@@ -59,7 +59,6 @@ const Mastery = ({
     if (clickedDeck !== null) {
       axios.get(`/allSessions/${clickedDeck}`).then((response) => {
         const mastery = response.data;
-        console.log(mastery);
         let count = 0;
         for (const key in mastery) {
           if (mastery[key] === 3) {
