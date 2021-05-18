@@ -3,7 +3,6 @@ import FlashCard from "./FlashCard.jsx";
 import Stats from "./Stats.jsx";
 
 const Study = ({
-  selectedDeck,
   session,
   numCards,
   setCardCounter,
@@ -25,7 +24,6 @@ const Study = ({
       <div className="col-9">
         <FlashCard
           clickedDeck={clickedDeck}
-          selectedDeck={selectedDeck}
           session={session}
           updateScoreState={updateScoreState}
           numCards={numCards}

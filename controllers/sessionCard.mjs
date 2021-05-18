@@ -5,15 +5,23 @@ const { Op } = sequelizePackage;
 export default function initSessionCardsController(db) {
   const newSessionCard = async (req, res) => {
     const { sessionId, cardId, familiarity } = req.params;
-    // create new row in session card db
-    const sessionCard = await db.SessionCard.create(
-      {
-        cardId,
-        familiarity,
-        sessionId,
-      },
-    );
-    res.sendStatus(200);
+    console.log('***************************************');
+
+    console.log(sessionId, cardId, familiarity);
+    try {
+      // create new row in session card db
+      const sessionCard = await db.SessionCard.create(
+        {
+          cardId,
+          familiarity,
+          sessionId,
+        },
+      );
+      res.sendStatus(200);
+    }
+    catch (err) {
+      console.log(err);
+    }
   };
 
   const sessionInfo = async (req, res) => {
@@ -26,6 +34,7 @@ export default function initSessionCardsController(db) {
           },
         },
       );
+      // console.log(allSessionCards);
       res.send(allSessionCards);
     } catch (err) {
       console.log(err);

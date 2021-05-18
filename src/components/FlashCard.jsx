@@ -43,7 +43,6 @@ const FlashCard = ({
           for (let i = 0; i < newDeck.length; i += 1) {
             srDeck.enqueue(newDeck[i]);
           }
-          console.log(srDeck.collection());
           setDeck(srDeck.collection());
         });
       });
@@ -58,6 +57,7 @@ const FlashCard = ({
     } else {
       card = <p>{deck[cardCounter][0].answer}</p>;
     }
+    console.log(deck[cardCounter]);
     // show cards while it is less than the number of cards chosen by user
     return (
       <React.Fragment>
@@ -74,7 +74,7 @@ const FlashCard = ({
         <div className="familiarityButtonGroup row">
           <FamiliarityButtons
             updateScoreState={updateScoreState}
-            cardId={deck[cardCounter].id}
+            cardId={deck[cardCounter][0].id}
             session={session}
             cardCounter={cardCounter}
             setCardCounter={setCardCounter}

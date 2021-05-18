@@ -14,24 +14,26 @@ const StudyDecks = ({ setClickedDeck, clickedDeck, setDecks, decks }) => {
   }, []);
 
   // create all the decks in nav tab
-  const deckList = decks.map((deck) => (
-    // let active = "";
-    // if (clickedDeck === deck.id) {
-    //   active = "active";
-    // } else {
-    //   active = "";
-    // }
-    <li className="nav-item" key={deck.id}>
-      <span
-        className="nav-link"
-        onClick={() => {
-          setClickedDeck(deck.id);
-        }}
-      >
-        {deck.name}
-      </span>
-    </li>
-  ));
+  const deckList = decks.map((deck) => {
+    let active = "";
+    if (clickedDeck === deck.id) {
+      active = "active";
+    } else {
+      active = "";
+    }
+    return (
+      <li className="nav-item" key={deck.id}>
+        <span
+          className={`nav-link ${active}`}
+          onClick={() => {
+            setClickedDeck(deck.id);
+          }}
+        >
+          {deck.name}
+        </span>
+      </li>
+    );
+  });
 
   if (decks.length > 1) {
     return (

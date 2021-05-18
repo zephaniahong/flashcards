@@ -10,7 +10,6 @@ const Mastery = ({
   setNumCards,
   setDeckLength,
   clickedDeck,
-  setClickedDeck,
 }) => {
   // create new session
   const createSession = (deckId) => {

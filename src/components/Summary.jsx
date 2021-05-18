@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Summary = ({
-  selectedDeck,
   session,
   numCards,
   setStudyState,
@@ -15,6 +14,7 @@ const Summary = ({
   useEffect(() => {
     // get stats info of the latest session
     axios.get(`/sessionInfo/${session}`).then((response) => {
+      console.log(response.data);
       let red = 0;
       let orange = 0;
       let green = 0;
@@ -32,7 +32,6 @@ const Summary = ({
       setPerfect(green);
     });
   }, []);
-
   return (
     <React.Fragment>
       <p>Congratulations on studying {numCards} cards!</p>
