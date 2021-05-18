@@ -14,7 +14,6 @@ const Summary = ({
   useEffect(() => {
     // get stats info of the latest session
     axios.get(`/sessionInfo/${session}`).then((response) => {
-      console.log(response.data);
       let red = 0;
       let orange = 0;
       let green = 0;

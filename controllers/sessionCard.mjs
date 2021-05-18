@@ -5,9 +5,6 @@ const { Op } = sequelizePackage;
 export default function initSessionCardsController(db) {
   const newSessionCard = async (req, res) => {
     const { sessionId, cardId, familiarity } = req.params;
-    console.log('***************************************');
-
-    console.log(sessionId, cardId, familiarity);
     try {
       // create new row in session card db
       const sessionCard = await db.SessionCard.create(
@@ -34,7 +31,6 @@ export default function initSessionCardsController(db) {
           },
         },
       );
-      // console.log(allSessionCards);
       res.send(allSessionCards);
     } catch (err) {
       console.log(err);

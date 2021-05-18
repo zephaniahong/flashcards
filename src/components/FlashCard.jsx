@@ -57,7 +57,6 @@ const FlashCard = ({
     } else {
       card = <p>{deck[cardCounter][0].answer}</p>;
     }
-    console.log(deck[cardCounter]);
     // show cards while it is less than the number of cards chosen by user
     return (
       <React.Fragment>
