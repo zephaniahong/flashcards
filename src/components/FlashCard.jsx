@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FamiliarityButtons from "./FamiliarityButtons.jsx";
 import PriorityQueue from "../priorityQueue";
+
 const FlashCard = ({
   clickedDeck,
   session,
@@ -31,13 +32,16 @@ const FlashCard = ({
         axios.get(`/allSessionCards/${clickedDeck}`).then((response2) => {
           const allSessionCards = response2.data;
           for (let i = 0; i < newDeck.length; i += 1) {
-            for (let j = 0; j < allSessionCards.length; j += 1) {
+            for (let j = allSessionCards.length - 1; j >= 0; j -= 1) {
               if (allSessionCards[j].cardId === newDeck[i][0].id) {
-                // compare familiarity
-                if (allSessionCards[j].familiarity > newDeck[i][1]) {
-                  newDeck[i][1] = allSessionCards[j].familiarity;
-                }
+                newDeck[i][1] = allSessionCards[j].familiarity;
+                break;
               }
+              // compare familiarity
+              //   if (allSessionCards[j].familiarity > newDeck[i][1]) {
+              //     newDeck[i][1] = allSessionCards[j].familiarity;
+              //   }
+              // }
             }
           }
           for (let i = 0; i < newDeck.length; i += 1) {
@@ -50,6 +54,7 @@ const FlashCard = ({
   }, []);
 
   if (deck) {
+    console.log(deck);
     let card;
     // show question or answer
     if (cardState === "question") {
