@@ -37,11 +37,6 @@ const FlashCard = ({
                 newDeck[i][1] = allSessionCards[j].familiarity;
                 break;
               }
-              // compare familiarity
-              //   if (allSessionCards[j].familiarity > newDeck[i][1]) {
-              //     newDeck[i][1] = allSessionCards[j].familiarity;
-              //   }
-              // }
             }
           }
           for (let i = 0; i < newDeck.length; i += 1) {
