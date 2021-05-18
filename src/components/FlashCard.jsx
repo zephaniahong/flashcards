@@ -49,7 +49,6 @@ const FlashCard = ({
   }, []);
 
   if (deck) {
-    console.log(deck);
     let card;
     // show question or answer
     if (cardState === "question") {
